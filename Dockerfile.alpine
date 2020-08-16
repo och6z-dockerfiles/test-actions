@@ -1,0 +1,14 @@
+ARG IMAGE_VERSION
+
+FROM alpine:${IMAGE_VERSION}
+
+RUN apk update \
+    && apk upgrade --no-cache \
+    && rm -rf /var/cache/apk/*
+
+ENTRYPOINT ["/bin/sh", "-c"]
+
+CMD ["ash"]
+
+#docker build --no-cache --build-arg IMAGE_VERSION=latest --file Dockerfile.alpine --tag image-name:version .
+#docker run --interactive --tty --name container-name image-name:version
